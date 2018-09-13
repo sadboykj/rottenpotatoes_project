@@ -1,11 +1,16 @@
 // rottenpotatoes
 
-//express
+// express
 const express = require('express')
 const app = express()
 
 // express handlebars
 var exphbs = require('express-handlebars');
+
+// database
+const mongoose = require('mongoose');
+// connect to mongoose db
+mongoose.connect('mongodb://localhost/rotten-potatoes', { useMongoClient: true});
 
 // arrays for reviews
 let reviews = [
