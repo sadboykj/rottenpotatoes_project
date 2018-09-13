@@ -7,16 +7,20 @@ const app = express()
 // express handlebars
 var exphbs = require('express-handlebars');
 
-// database
+// connect to  mongo database
 const mongoose = require('mongoose');
-// connect to mongoose db
-mongoose.connect('mongodb://localhost/rotten-potatoes', { useMongoClient: true});
+mongoose.connect('mongodb://localhost/rottenpotatoes');
+
+// add model to our review
+const Review = mongoose.model('Review', {
+    title: String
+});
 
 // arrays for reviews
-let reviews = [
-    { title: "Great Review" },
-    { title: "Next Review" }
-]
+// let reviews = [
+//     { title: "Great Review" },
+//     { title: "Next Review" }
+// ]
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -24,7 +28,17 @@ app.set('view engine', 'handlebars');
 //
 app.get('/', (req, res) => {
     // extend roote route from views
-    res.render('home', { msg: 'Hello World!' });
+    // res.render('home', { msg: 'Hello World!' });
+
+    // Find Review in db
+    // .then Promise fufilled when data comes back from db
+    Review.find()
+        .then(reviews => {
+            res.render('reviews-index', { reviews: reviews });
+        })
+        .catch(err => {
+            console.log(err);
+        })
 })
 
 // index
