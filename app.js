@@ -47,6 +47,11 @@ app.get('/reviews', (req, res) => {
     res.render('reviews-index', { reviews: reviews });
 })
 
+// recieves new reviews and sends it to handlebars for rendering
+app.get('/reviews/new', (req, res) => {
+    res.render('reviews-new', {});
+})
+
 //server
 app.listen(3000, () => {
     console.log('App listening on port 3000!')
