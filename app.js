@@ -17,10 +17,10 @@ const Review = mongoose.model('Review', {
 });
 
 // arrays for reviews
-// let reviews = [
-//     { title: "Great Review" },
-//     { title: "Next Review" }
-// ]
+let reviews = [
+    { title: "Great Review" },
+    { title: "Next Review" }
+]
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
