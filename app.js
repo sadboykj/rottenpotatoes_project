@@ -5,14 +5,14 @@ const express = require('express')
 const app = express()
 
 // express handlebars
-var exphbs = require('express-handlebars');
+var exphbs = require('express-handlebars')
 
 // body parser
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
 
 // connect to  mongo database
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/rottenpotatoes');
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/rottenpotatoes')
 
 // add model to our review
 const Review = mongoose.model('Review', {
@@ -20,7 +20,7 @@ const Review = mongoose.model('Review', {
     title: String,
     description: String,
     movieTitle: String
-});
+})
 
 // arrays for reviews
 let reviews = [
@@ -28,12 +28,13 @@ let reviews = [
     { title: "Next Review" }
 ]
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
+app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
 
-app.use(bodyParser.urlencoded({ endcoded: true }));
+app.use(bodyParser.urlencoded({ endcoded: true }))
 
-//
+// INDEX
+// sends object (review arrays) to views for rendering
 app.get('/', (req, res) => {
     // extend roote route from views
     // res.render('home', { msg: 'Hello World!' });
@@ -47,12 +48,6 @@ app.get('/', (req, res) => {
         .catch(err => {
             console.log(err);
         })
-})
-
-// INDEX
-// sends object (review arrays) to views for rendering
-app.get('/reviews', (req, res) => {
-    res.render('reviews-index', { reviews: reviews });
 })
 
 // NEW
@@ -69,7 +64,7 @@ app.post('/reviews', (req, res) => {
     Review.create(req.body).then((review) => {
         console.log(review);
         // automatically redirect to reviews/:id
-        res.redirect(`/reviews/${review._id}`)
+        res.redirect(`/reviews/${review._id}`);
     }).catch((err) => {
         console.log(err.message);
     })
@@ -79,16 +74,23 @@ app.post('/reviews', (req, res) => {
 // gives each review its own page and unique url path
 // :id - Url or Request Parameter (accessed with req.params)
 app.get('/reviews/:id', (req, res) => {
-    // res.send('I\'m a review')
+    //res.send('I\'m a review')
     //
-    Review.findbyId(req.params.id).then((review) => {
-        res.render('reviews-show', { review: review })
+    Review.findById(req.params.id).then((review) => {
+        res.render('reviews-show', { review: review });
     }).catch((err) => {
         console.log(err.message);
+    })
+})
+
+// EDIT
+app.get('/reviews/:id/edit', (req, res) => {
+    Review.findById(req.params.id, function(err, review) {
+        res.render('reviews-edit', {review: review});
     })
 })
 
 //server
 app.listen(3000, () => {
     console.log('App listening on port 3000!')
-})
+});
