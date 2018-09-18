@@ -7,13 +7,19 @@ const app = express()
 // express handlebars
 var exphbs = require('express-handlebars');
 
+// body parser
+const bodyParser = require('body-parser');
+
 // connect to  mongo database
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/rottenpotatoes');
 
 // add model to our review
 const Review = mongoose.model('Review', {
-    title: String
+    // attributes can be String, Number, or Date
+    title: String,
+    description: String,
+    movieTitle: String
 });
 
 // arrays for reviews
@@ -24,6 +30,8 @@ let reviews = [
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+app.use(bodyParser.urlencoded({ endcoded: true }));
 
 //
 app.get('/', (req, res) => {
@@ -50,6 +58,19 @@ app.get('/reviews', (req, res) => {
 // recieves new reviews and sends it to handlebars for rendering
 app.get('/reviews/new', (req, res) => {
     res.render('reviews-new', {});
+})
+
+// create
+app.post('/reviews', (req, res) => {
+    //console.log(req.body);
+    //
+    //Create Review and direct it to root path
+    Review.create(req.body).then((review) => {
+        console.log(review);
+        res.redirect('/');
+    }).catch((err) => {
+        console.log(err.message);
+    })
 })
 
 //server
