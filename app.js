@@ -49,25 +49,40 @@ app.get('/', (req, res) => {
         })
 })
 
-// index
+// INDEX
 // sends object (review arrays) to views for rendering
 app.get('/reviews', (req, res) => {
     res.render('reviews-index', { reviews: reviews });
 })
 
+// NEW
 // recieves new reviews and sends it to handlebars for rendering
 app.get('/reviews/new', (req, res) => {
     res.render('reviews-new', {});
 })
 
-// create
+// CREATE
 app.post('/reviews', (req, res) => {
     //console.log(req.body);
     //
     //Create Review and direct it to root path
     Review.create(req.body).then((review) => {
         console.log(review);
-        res.redirect('/');
+        // automatically redirect to reviews/:id
+        res.redirect(`/reviews/${review._id}`)
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
+
+// SHOW
+// gives each review its own page and unique url path
+// :id - Url or Request Parameter (accessed with req.params)
+app.get('/reviews/:id', (req, res) => {
+    // res.send('I\'m a review')
+    //
+    Review.findbyId(req.params.id).then((review) => {
+        res.render('reviews-show', { review: review })
     }).catch((err) => {
         console.log(err.message);
     })
