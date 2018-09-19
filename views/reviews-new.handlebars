@@ -1,30 +1,11 @@
 <!-- views/reviews-new.handlebars -->
 
 <form method="POST" action="/reviews">
-    <fieldset>
-        <legend>New Review</legend>
-        <!-- Title -->
-        <p>
-            <label for="title">Title</label><br>
-            <input id="review-title" type="text" name="title" />
-        </p>
-    </fieldset>
+    {{> reviews-form}}
 
-    <!-- Movie Title -->
-    <p>
-        <label for="movie-title">Movie Title</label><br>
-        <input id="movie-title" type="text" name="movieTitle" />
-    </p>
-
-    <!-- Description -->
-    <p>
-        <label for="description-text">Description></label><br>
-        <textarea id="description-text" name="description" name="description" rows="10" /></textarea>
-    </p>
-
-    <!-- Button -->
+    <!-- BUTTON -->
     <p>
         <button type="submit">Save Review</button>
     </p>
-    
+
 </form>

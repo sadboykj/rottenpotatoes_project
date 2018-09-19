@@ -1,0 +1,18 @@
+<!-- views/reviews-edit.handlebars -->
+
+<!--
+HTML cannot take the method PUT
+To work around this we use "?_method=PUT" at the end of action
+Download method-override and
+The server intercepts and makes the HTTP Request
+-->
+<!-- <form method="POST" action="/reviews/{{review._id}}?_method=PUT"> -->
+<form method="POST" action="/reviews/{{review._id}}?_method=PUT">
+    {{> reviews-form}}
+    
+    <!-- BUTTON -->
+    <p>
+        <button type="submit">Save Review</button>
+    </p>
+
+</form>

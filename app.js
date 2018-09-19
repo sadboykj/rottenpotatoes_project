@@ -1,19 +1,30 @@
-// rottenpotatoes
+// RottenPotatoes
 
 // express
+// a light-weight web application framework
+// organizes resources into an MVC architecture
 const express = require('express')
+// method-override for server to get "PUT" command
+// since HTML doesnt have it
+const methodOverride = require('method-override')
+//
 const app = express()
-
+//
 // express handlebars
+// handlebars is templating engine
 var exphbs = require('express-handlebars')
-
+//
 // body parser
+// parse - to analyze into parts and roles
+// bodyParser parses your request and converts
+// the data into an easily extractable format
+// imports req.body and req
 const bodyParser = require('body-parser')
-
+//
 // connect to  mongo database
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/rottenpotatoes')
-
+//
 // add model to our review
 const Review = mongoose.model('Review', {
     // attributes can be String, Number, or Date
@@ -30,8 +41,10 @@ let reviews = [
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
-
+//
 app.use(bodyParser.urlencoded({ endcoded: true }))
+// overrides with POST
+app.use(methodOverride('_method'))
 
 // INDEX
 // sends object (review arrays) to views for rendering
@@ -87,6 +100,16 @@ app.get('/reviews/:id', (req, res) => {
 app.get('/reviews/:id/edit', (req, res) => {
     Review.findById(req.params.id, function(err, review) {
         res.render('reviews-edit', {review: review});
+    })
+})
+
+// UPDATE
+app.put('/reviews/:id', (req, res) => {
+    Review.findByIdAndUpdate(req.params.id, req.body).then(review => {
+        res.redirect(`/reviews/${review._id}`)
+    })
+    .catch(err => {
+        console.log(err.message)
     })
 })
 
