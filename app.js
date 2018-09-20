@@ -41,8 +41,9 @@ let reviews = [
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
-//
-app.use(bodyParser.urlencoded({ endcoded: true }))
+// bodyParser update
+// app.use(bodyParser.urlencoded({ endcoded: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
 // overrides with POST
 app.use(methodOverride('_method'))
 
@@ -110,6 +111,16 @@ app.put('/reviews/:id', (req, res) => {
     })
     .catch(err => {
         console.log(err.message)
+    })
+})
+
+// DELETE
+app.delete('/reviews/:id', function (req, res) {
+    Review.findByIdAndRemove(req.params.id).then((review) => {
+        console.log(`Deleted review: ${review.title}`)
+        res.redirect('/');
+    }).catch((err) => {
+        console.log(err.message);
     })
 })
 
