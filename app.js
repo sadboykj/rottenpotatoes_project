@@ -28,12 +28,12 @@ const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/rottenpotatoes')
 //
 // add model to our review
-const Review = mongoose.model('Review', {
-    // attributes can be String, Number, or Date
-    title: String,
-    description: String,
-    movieTitle: String
-})
+// const Review = mongoose.model('Review', {
+//     // attributes can be String, Number, or Date
+//     title: String,
+//     description: String,
+//     movieTitle: String
+// })
 
 // // arrays for reviews
 // let reviews = [
