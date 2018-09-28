@@ -1,6 +1,6 @@
 // RottenPotatoes
 //
-// Express
+// EXPRESS
 //
 // express
 // a light-weight web application framework
@@ -28,22 +28,25 @@ const app = express()
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 //
-// db
+// DATABASE
+//
 // connect to mongo database
-// 
-//
-//
-//
-
-
-const reviews = require('./controllers/reviews')
-
-
-var exphbs = require('express-handlebars')
-
-
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/rottenpotatoes')
+//
+//
+//
+// Routers
+// arrays for reviews
+// let reviews = [
+//     { title: "Great Review" },
+//     { title: "Next Review" }
+// ]
+//
+// Below is a route to the reviews model in the controllers
+const reviews = require('./controllers/reviews')
+// Handlebar Setup
+var exphbs = require('express-handlebars')
 
 // // arrays for reviews
 // let reviews = [
