@@ -3,23 +3,33 @@ const express = require('express')
 const app = express()
 
 // HANDLEBARS - views
-var exphbs = require('express-handlebars');
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+var exphbs = require('express-handlebars')
+app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars');
 
+// MONGOOSE - database
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/rottenpotatoes')
+
 // BODY-PARSER
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
 
 const port = 3000
 
-// list of objects
-let reviews = [
-    { title: "Unexpected Best Movie Ever",
-      movieTitle: "The Room" },
-    { title: "Live-Action Anime Should Be Illegal",
-      movieTitle: "The Last Airbender"}
-]
+// OBJECTS
+// let reviews = [
+//     { title: "Unexpected Best Movie Ever",
+//       movieTitle: "The Room" },
+//     { title: "Live-Action Anime Should Be Illegal",
+//       movieTitle: "The Last Airbender"}
+// ]
+const Review = mongoose.model('Review', {
+    title: String,
+    movieTitle: String,
+    rating: Number
+})
+
 
 //ROUTERS
 
@@ -29,7 +39,14 @@ let reviews = [
 // })
 
 app.get('/', (req, res) => {
-    res.render('reviews-index', { reviews: reviews });
+    // res.render('reviews-index', { reviews: reviews });
+    Review.find()
+    .then(reviews => {
+        res.render('reviews-index', { reviews: reviews })
+    })
+    .catch(err => {
+        console.log('what you doin dawg')
+    })
 })
 
 app.listen(port, () => {
