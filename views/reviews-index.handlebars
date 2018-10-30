@@ -3,14 +3,25 @@
     Reviews
 </h1>
 
+<a href="/reviews/new">
+    New Review
+</a>
+
 {{#each reviews}}
 
   <h2>
       {{this.title}}
   </h2>
 
-  <small>
+  <h4>
       {{this.movieTitle}}
-  </small>
+  </h4>
+
+  <rating>
+      {{}}
 
 {{/each}}
+title: String,
+movieTitle: String,
+rating: String,
+description: String

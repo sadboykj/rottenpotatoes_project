@@ -27,9 +27,9 @@ const port = 3000
 const Review = mongoose.model('Review', {
     title: String,
     movieTitle: String,
-    rating: Number
+    rating: Number,
+    description: String
 })
-
 
 //ROUTERS
 
@@ -38,6 +38,7 @@ const Review = mongoose.model('Review', {
 //     res.render('home', { msg: 'Handlebars enable us to get bread'})
 // })
 
+// INDEX
 app.get('/', (req, res) => {
     // res.render('reviews-index', { reviews: reviews });
     Review.find()
@@ -45,7 +46,23 @@ app.get('/', (req, res) => {
         res.render('reviews-index', { reviews: reviews })
     })
     .catch(err => {
-        console.log('what you doin dawg')
+        console.log('nah dawg no reviews here')
+    })
+})
+
+// NEW
+app.get('/reviews/new', (req, res) => {
+    res.render('reviews-new', {})
+})
+
+// CREATE
+app.post('/reviews', (req, res) => {
+    // console.log(req.body)
+    Review.create(req.body).then((review) => {
+        console.log(review)
+        res.redirect('/')
+    }).catch((err) => {
+        console.log('this review aint it chief')
     })
 })
 

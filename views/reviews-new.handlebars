@@ -1,0 +1,84 @@
+<!-- views/reviews-new.handlebars -->
+
+<form method="POST" action="/reviews">
+  <fieldset>
+    <legend>New Review</legend>
+
+    <p>
+      <label for="review-title">
+          Title:
+      </label>
+      <br>
+      <input id="review-title" type="text" name="title" onchange="save_title()"/>
+    </p>
+
+    <p>
+      <label for="movie-title">
+          Movie:
+      </label>
+      <br>
+      <input id="movie-title" type="text" name="movieTitle" onchange="save_movie()"/>
+    </p>
+    <p>
+        <label for="movie-rating">
+            Rating:
+        </label>
+        <select id="movie-rating" name="rating" onchange="save_rating()">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </p>
+    <p>
+        <label for="description-text">
+            Write Here:
+        </label>
+        <br>
+        <textarea id="description-text" type="text" name="description" rows="5" onchange="save_desc()"/>
+        </textarea>
+    </p>
+
+  </fieldset>
+
+  <!-- BUTTON -->
+  <p>
+    <button type="submit">Save Review</button>
+  </p>
+
+</form>
+
+<script>
+
+function save_title() {
+    var title = document.getElementById("review-title").value
+
+    localStorage.setItem("review-title", title)
+    console.log(title);
+}
+
+function save_movie() {
+    var movie = document.getElementById("movie-title").value
+
+    localStorage.setItem("movie-title", movie)
+    console.log(movie);
+}
+
+function save_rating() {
+    var number = document.getElementById("movie-rating").value
+    var rating = Number(number)
+
+    localStorage.setItem("reviewRating", rating)
+    console.log(rating);
+}
+
+function save_desc() {
+    var desc = document.getElementById("description-text").value
+
+    localStorage.setItem("description-text", desc)
+    console.log(desc);
+}
+
+</script>
