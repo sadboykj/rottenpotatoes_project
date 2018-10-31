@@ -10,18 +10,17 @@
 {{#each reviews}}
 
   <h2>
-      {{this.title}}
+      <a href="/reviews/{{this._id}}">
+          {{this.title}}
+      </a>
   </h2>
 
   <h4>
       {{this.movieTitle}}
   </h4>
 
-  <rating>
-      {{}}
+  <h4>
+      Rating: {{this.rating}}
+  </h4>
 
 {{/each}}
-title: String,
-movieTitle: String,
-rating: String,
-description: String
