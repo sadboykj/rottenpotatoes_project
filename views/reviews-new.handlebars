@@ -33,12 +33,11 @@
         </select>
     </p>
     <p>
-        <label for="description-text">
+        <label for="review-description">
             Write Here:
         </label>
         <br>
-        <textarea id="description-text" type="text" name="description" rows="5" onchange="save_desc()"/>
-        </textarea>
+        <textarea id="review-description" type="text" name="description" rows="5" onchange="save_desc()"/></textarea>
     </p>
 
   </fieldset>
@@ -62,7 +61,7 @@ function save_title() {
 function save_movie() {
     var movie = document.getElementById("movie-title").value
 
-    localStorage.setItem("movie-title", movie)
+    localStorage.setItem("review-movie", movie)
     console.log(movie);
 }
 
@@ -70,14 +69,14 @@ function save_rating() {
     var number = document.getElementById("movie-rating").value
     var rating = Number(number)
 
-    localStorage.setItem("reviewRating", rating)
+    localStorage.setItem("review-rating", rating)
     console.log(rating);
 }
 
 function save_desc() {
     var desc = document.getElementById("description-text").value
 
-    localStorage.setItem("description-text", desc)
+    localStorage.setItem("review-description", desc)
     console.log(desc);
 }
 

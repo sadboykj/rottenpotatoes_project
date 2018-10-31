@@ -1,6 +1,8 @@
 // EXPRESS
 const express = require('express')
+const methodOverride = require('method-override')
 const app = express()
+app.use(methodOverride('_method'))
 
 // HANDLEBARS - views
 var exphbs = require('express-handlebars')
@@ -14,6 +16,8 @@ mongoose.connect('mongodb://localhost/rottenpotatoes')
 // BODY-PARSER
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
+
+// METHOD-OVERRIDE
 
 const port = 3000
 
@@ -74,6 +78,24 @@ app.get('/reviews/:id', (req, res) => {
     }).catch((err) => {
         // console.log(err.message);
         console.log('this review aint it chief')
+    })
+})
+
+// EDIT
+app.get('/reviews/:id/edit', (req, res) => {
+    Review.findById(req.params.id, function(err, review) {
+        res.render('review-edit', {review: review })
+    })
+})
+
+// UPDATE
+app.put('/reviews/:id', (req, res) => {
+    Review.findByIdAndUpdate(req.params.id, req.body)
+    .then(review => {
+        res.redirect(`/reviews/${review._id}`)
+    }).catch(err => {
+        // console.log(err.message);
+        console.log('this edit update aint it chief')
     })
 })
 
