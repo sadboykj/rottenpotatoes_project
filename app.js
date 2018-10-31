@@ -40,7 +40,6 @@ const Review = mongoose.model('Review', {
 
 // INDEX
 app.get('/', (req, res) => {
-    // res.render('reviews-index', { reviews: reviews });
     Review.find()
     .then(reviews => {
         res.render('reviews-index', { reviews: reviews })
@@ -57,11 +56,23 @@ app.get('/reviews/new', (req, res) => {
 
 // CREATE
 app.post('/reviews', (req, res) => {
-    // console.log(req.body)
     Review.create(req.body).then((review) => {
+        // console.log(req.body)
         console.log(review)
-        res.redirect('/')
+        res.redirect(`/reviews/${review._id}`)
     }).catch((err) => {
+        // console.log(err.message);
+        console.log('this review aint it chief')
+    })
+})
+
+// SHOW
+app.get('/reviews/:id', (req, res) => {
+    // res.send('Yea wassup brodie I\'m right here')
+    Review.findById(req.params.id).then((review) => {
+        res.render('reviews-show', { review: review })
+    }).catch((err) => {
+        // console.log(err.message);
         console.log('this review aint it chief')
     })
 })
