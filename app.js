@@ -99,6 +99,17 @@ app.put('/reviews/:id', (req, res) => {
     })
 })
 
+// DELETE
+app.delete('/reviews/:id', function (req, res) {
+    console.log('fudatbihya')
+    Review.findByIdAndRemove(req.params.id).then((review) => {
+        res.redirect('/')
+    }).catch((err) => {
+        // console.log(err.message);
+        console.log('chief said not to delete the poor boi')
+    })
+})
+
 app.listen(port, () => {
     console.log('Boys, were up and running')
 })
