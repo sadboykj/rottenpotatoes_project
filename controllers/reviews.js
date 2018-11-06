@@ -1,11 +1,11 @@
 // reviews.js
 
-const Review = require('../models/review.js')
-module.exports = function(app, Review) {
+const Review = require('../models/review')
+module.exports = function(app) {
 
     // INDEX
     app.get('/', (req, res) => {
-        Review.find()
+        Review.find({})
             .then(reviews => {
                 res.render('reviews-index', { reviews: reviews })
         })
