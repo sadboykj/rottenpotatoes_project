@@ -11,14 +11,14 @@ app.set('view engine', 'handlebars');
 
 // MONGOOSE - database
 var mongoose = require('mongoose')
-mongoose.connect(process.env.MONGOLAB_CRIMSON_URI || 'mongodb://localhost/rottenpotatoes',  { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rottenpotatoes',  { useNewUrlParser: true })
 
 // BODY-PARSER
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-const port = 3000
+const port = process.env.PORT || 3000
 
 // ROUTERS
 const reviews = require('./controllers/reviews')(app)
