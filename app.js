@@ -10,8 +10,8 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars');
 
 // MONGOOSE - database
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/rottenpotatoes',  { useNewUrlParser: true })
+var mongoose = require('mongoose')
+mongoose.connect(process.env.MONGOLAB_CRIMSON_URI || 'mongodb://localhost/rottenpotatoes',  { useNewUrlParser: true })
 
 // BODY-PARSER
 const bodyParser = require('body-parser')
