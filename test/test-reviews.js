@@ -22,10 +22,10 @@ const runaway_review = {
 }
 
 const test_review = {
-    "title": "Test",
-    "movieTitle": "The Serbian Film",
-    "description": "Yikes bro this is some shady stuff",
-    "rating": 10
+    "title": "Another Day in the Simulation",
+    "movieTitle": "Dan Vichi Code",
+    "description": "Nothing out of the ordinary",
+    "rating": 1000000
 }
 
 chai.use(chaiHttp)
@@ -97,23 +97,23 @@ describe('Reviews', () => {
                 })
         })
     })
-    // TEST UPDATE
-    it('should update a SINGLE review on /reviews/<id> PUT', (done) => {
-        var review = new Review(test_review)
-        review.save((err, data) => {
-            chai.request(server)
-                .put(`/reviews/${data._id}?_method=PUT`)
-                .send({title: 'Title Update was a Success'})
-                .send({movieTitle: 'Movie Update was a Success'})
-                .send({description: 'Description Update was a Success'})
-                .send({rating: '0'})
-                .end((err, res) => {
-                    res.should.html.status(200)
-                    res.should.be.html
-                    done()
-                })
-        })
-    })
+    // // TEST UPDATE
+    // it('should update a SINGLE review on /reviews/<id> PUT', (done) => {
+    //     var review = new Review(test_review)
+    //     review.save((err, data) => {
+    //         chai.request(server)
+    //             .put(`/reviews/${data._id}?_method=PUT`)
+    //             .send({title: 'Title Update was a Success'})
+    //             .send({movieTitle: 'Movie Update was a Success'})
+    //             .send({description: 'Description Update was a Success'})
+    //             .send({rating: '0'})
+    //             .end((err, res) => {
+    //                 res.should.html.status(200)
+    //                 res.should.be.html
+    //                 done()
+    //             })
+    //     })
+    // })
     // TEST DELETE
     it('should delete a SINGLE review on /reviews/<id> DELETE', (done) => {
         var review = new Review(test_review)

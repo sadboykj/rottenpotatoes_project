@@ -1,54 +1,58 @@
 <!-- views/reviews-edit.handlebars -->
 
-<form method="POST" action="/reviews/{{review._id}}?_method=PUT">
-  <fieldset>
-    <legend>Edit Review</legend>
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <form method="POST" action="/reviews/{{review._id}}?_method=PUT">
+          <fieldset>
+            <legend>Edit Review</legend>
 
-    <p>
-      <label for="review-title">
-          Title
-      </label>
-      <br>
-      <input id="review-title" type="text" name="title" value="{{review.title}}" onchange="save_title()" />
-    </p>
+            <div class="form-group">
+              <label for="review-title">
+                  Title
+              </label>
+              <br>
+              <input id="review-title" type="text" name="title" value="{{review.title}}" onchange="save_title()" />
+            </div>
 
-    <p>
-      <label for="movie-title">
-          Movie Title
-      </label>
-      <br>
-      <input id="movie-title" type="text" name="movieTitle" value="{{review.movieTitle}}" onchange="save_movie()" />
-    </p>
+            <div class="form-group">
+              <label for="movie-title">
+                  Movie Title
+              </label>
+              <br>
+              <input id="movie-title" type="text" name="movieTitle" value="{{review.movieTitle}}" onchange="save_movie()" />
+            </div>
 
-    <p>
-        <label for="movie-rating">
-            Rating:
-        </label>
-        <select id="movie-rating" name="rating" value="{{review.rating}}" onchange="save_rating()">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-    </p>
+            <div class="form-group">
+                <label for="movie-rating">
+                    Rating:
+                </label>
+                <select id="movie-rating" name="rating" value="{{review.rating}}" onchange="save_rating()">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
 
-    <p>
-      <label for="review-description">
-          Description
-      </label>
-      <br>
-      <textarea id="review-description" name="description" rows="10" onchange="save_desc()"/>{{review.description}}</textarea>
-    </p>
+            <div class="form-group">
+              <label for="review-description">
+                  Description
+              </label>
+              <br>
+              <textarea id="review-description" name="description" rows="10" onchange="save_desc()"/>{{review.description}}</textarea>
+          </div>
 
-  </fieldset>
+          </fieldset>
 
-  <p>
-    <button type="submit">Save Review</button>
-  </p>
+          <p>
+            <button type="submit">Save Review</button>
+          </p>
 
-</form>
+        </form>
+    </div>
+</div>
 
   <script>
 

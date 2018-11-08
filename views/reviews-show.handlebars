@@ -3,30 +3,34 @@
 <a href="/">
     Back to Home
 </a>
-<br>
-<h1>
-    {{review.title}}
-</h1>
-<h3>
-    {{review.movieTitle}}
-</h3>
-<h3>
-    Rating: {{review.rating}}
-</h3>
-<p>
-    {{review.description}}
-</p>
 
-<button>
-    <a href="/reviews/{{review._id}}/edit">
-        Edit
-    </a>
-</button>
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+        <h1>
+            {{review.title}}
+        </h1>
+        <h3>
+            {{review.movieTitle}}
+        </h3>
+        <h3>
+            Rating: {{review.rating}}
+        </h3>
+        <p>
+            {{review.description}}
+        </p>
 
-<p>
-    <form method="POST" action="/reviews/{{review._id}}?_method=DELETE">
-        <button type="submit">
-            Delete
+        <button>
+            <a href="/reviews/{{review._id}}/edit">
+                Edit
+            </a>
         </button>
-    </form>
-</p>
+
+        <p>
+            <form method="POST" action="/reviews/{{review._id}}?_method=DELETE">
+                <button type="submit">
+                    Delete
+                </button>
+            </form>
+        </p>
+    </div>
+</div>

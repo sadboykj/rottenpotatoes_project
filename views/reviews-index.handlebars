@@ -3,24 +3,38 @@
     Reviews
 </h1>
 
-<a href="/reviews/new">
+<!-- <a href="/reviews/new">
     New Review
-</a>
+</a> -->
+<div class="row">
+    {{#each reviews}}
+        <div class="col-sm-6 col-sm-offset-3">
+          <h3>
+              <a href="/reviews/{{this._id}}">
+                  {{this.title}}
+              </a>
+          </h3>
 
-{{#each reviews}}
+          <h4>
+              {{this.movieTitle}}
+          </h4>
 
-  <h2>
-      <a href="/reviews/{{this._id}}">
-          {{this.title}}
-      </a>
-  </h2>
+          <h4>
+              Rating: {{this.rating}}
+          </h4>
+          <p>
+              <a href="/reviews/{{review._id}}/edit">
+                  Edit
+              </a>
+          </p>
+          <p>
+              <form method="POST" action="/reviews/{{review._id}}?_method=DELETE">
+                  
+      </div>
+    {{/each}}
+</div>
 
-  <h4>
-      {{this.movieTitle}}
-  </h4>
-
-  <h4>
-      Rating: {{this.rating}}
-  </h4>
-
-{{/each}}
+<!-- Need method that
+- makes list for storing user search terms
+- keeps track of terms that have been searched
+- reccommends search terms haha -->
