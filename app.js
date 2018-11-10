@@ -22,6 +22,7 @@ const port = process.env.PORT || 3000
 
 // ROUTERS
 const reviews = require('./controllers/reviews')(app)
+const comments= require('./controllers/comments')(app)
 
 app.listen(port, () => {
     console.log('Boys, were up and running')

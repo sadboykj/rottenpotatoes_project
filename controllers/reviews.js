@@ -1,7 +1,7 @@
 // reviews.js
 
 const Review = require('../models/review')
-module.exports = function(app) {
+module.exports = (app) => {
 
     // INDEX
     app.get('/', (req, res) => {
