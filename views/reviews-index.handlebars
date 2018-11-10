@@ -9,27 +9,28 @@
 <div class="row">
     {{#each reviews}}
         <div class="col-sm-6 col-sm-offset-3">
-          <h3>
-              <a href="/reviews/{{this._id}}">
-                  {{this.title}}
-              </a>
-          </h3>
+            <h3>
+                <a href="/reviews/{{this._id}}">
+                    {{this.title}}
+                </a>
+            </h3>
 
-          <h4>
-              {{this.movieTitle}}
-          </h4>
+            <h4>
+                {{this.movieTitle}}
+            </h4>
 
-          <h4>
-              Rating: {{this.rating}}
-          </h4>
-          <p>
-              <a href="/reviews/{{review._id}}/edit">
-                  Edit
-              </a>
+            <h4>
+                Rating: {{this.rating}}
+            </h4>
+            <p>
+                <a href="/reviews/{{this._id}}/edit">
+                    Edit
+                </a>
           </p>
           <p>
               <form method="POST" action="/reviews/{{review._id}}?_method=DELETE">
-                  
+        </p>
+
       </div>
     {{/each}}
 </div>
