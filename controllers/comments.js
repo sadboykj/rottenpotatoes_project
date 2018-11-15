@@ -5,7 +5,12 @@ module.exports = (app) => {
 
     // NEW
     app.post('reviews/comments', (req, res) => {
-        res.send('reviews comment')
+        Comment.create(req.body).then(comment => {
+            res.redirect(`/reviews/${comment.reviewId}`)
+            console.log(comment)
+        }).catch((err) => {
+            console.log("comment wasn't chief-certified :/")
+        })
     })
 
 }
