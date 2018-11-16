@@ -1,14 +1,17 @@
 // review.js
 
 const mongoose = require('mongoose')
-const Comment  = require('/models/comment')
+const Comment  = require('./comment')
+// echo $NODE_PATH
+// which npm
+// export NODE_PATH='/usr/local/bin/node_modules'
 
 const Review = mongoose.model('Review', {
     title: String,
     movieTitle: String,
     description: String,
     rating: Number
-})
+});
 
 module.exports = Review;
 

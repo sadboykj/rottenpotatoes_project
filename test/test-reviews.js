@@ -7,12 +7,16 @@ const server = require('../app')
 const should = chai.should()
 const Review = require('../models/review')
 
-// const Review = mongoose.model('Review', {
-//     title: String,
-//     movieTitle: String,
-//     description: String,
-//     rating: Number
-// })
+// mocha
+// - test runner
+//
+// chai
+// - assertion library
+// - syntactic sugar - makes writing tests better.
+//
+// chai-http
+// - helper test library
+// - methods for making http requests in tests
 
 const runaway_review = {
     "title": "A Beautiful Love Story",
@@ -115,7 +119,7 @@ describe('Reviews', () => {
                 })
         })
     })
-    
+
     // TEST DELETE
     it('should delete a SINGLE review on /reviews/<id> DELETE', (done) => {
         var review = new Review(test_review)
