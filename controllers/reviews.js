@@ -40,7 +40,9 @@ module.exports = (app) => {
         Review.findById(req.params.id).then((review) => {
             // gets comments
             Comment.find({ reviewId: req.params.id }).then(comments => {
+                // console.log('this may work')
                 res.render('reviews-show', { review: review, comments: comments })
+                // console.log('okay it works')
             })
         }).catch((err) => {
             // console.log(err.message);
@@ -51,7 +53,7 @@ module.exports = (app) => {
     // EDIT
     app.get('/reviews/:id/edit', (req, res) => {
         Review.findById(req.params.id, function(err, review) {
-            res.render('review-edit', {review: review })
+            res.render('reviews-edit', {review: review })
         })
     });
 
@@ -59,6 +61,7 @@ module.exports = (app) => {
     app.put('/reviews/:id', (req, res) => {
         Review.findByIdAndUpdate(req.params.id, req.body)
         .then(review => {
+            // console.log('everything worked from here')
             res.redirect(`/reviews/${review._id}`)
         }).catch(err => {
             // console.log(err.message);
@@ -70,6 +73,7 @@ module.exports = (app) => {
     app.delete('/reviews/:id', function (req, res) {
         console.log('fudatbihya')
         Review.findByIdAndRemove(req.params.id).then((review) => {
+            console.log(review)
             res.redirect('/')
         }).catch((err) => {
             // console.log(err.message);

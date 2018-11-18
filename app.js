@@ -5,7 +5,7 @@ const dotenv = require('dotenv').config();
 const express = require('express')
 const methodOverride = require('method-override')
 const app = express()
-// app.use(methodOverride('_method'))
+app.use(methodOverride('_method'))
 
 // HANDLEBARS - views
 var exphbs = require('express-handlebars')
@@ -25,7 +25,6 @@ app.use(bodyParser.json())
 const reviews  = require('./controllers/reviews')(app)
 const comments = require('./controllers/comments')(app)
 const movies   = require('./controllers/movies')(app)
-app.use(methodOverride('_method'))
 
 const port = process.env.PORT || 3000
 
